@@ -1,27 +1,23 @@
 var webpack = require('webpack');
 var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
-var env = process.env.WEBPACK_ENV;
+var PROD = JSON.parse(process.env.PROD_DEV || "0");
 var path = require('path');
 
+// get library details from JSON config
 var libraryDesc = require('./library.json');
 var libraryName = libraryDesc.name;
-var libraryNameProd = libraryDesc.name + ".min";
+var libraryEntryPoint = libraryDesc.entry;
 
-var plugins = [], outputFile;
+// determine output file name
+var outputName = PROD ? libraryName + '.min.js' : libraryName + '.js';
 
-if (env === 'build') {
-  plugins.push(new UglifyJsPlugin({ minimize: true }));
-  outputFile = libraryNameProd + '.js';
-} else {
-  outputFile = libraryName + '.js';
-}
-
+// generate webpack config
 var config = {
-  entry: __dirname + '/src/index.js',
+  entry: __dirname + libraryEntryPoint,
   devtool: 'source-map',
   output: {
     path: __dirname + '/lib',
-    filename: outputFile,
+    filename: outputName,
     library: libraryName,
     libraryTarget: 'umd',
     umdNamedDefine: true
@@ -41,7 +37,12 @@ var config = {
     root: path.resolve('./src'),
     extensions: ['', '.js']
   },
-  plugins: plugins
+  plugins: PROD ? [
+    new UglifyJsPlugin({ minimize: true })
+    // Prod plugins here
+  ] : [
+    // Dev plugins here
+  ]
 };
 
 module.exports = config

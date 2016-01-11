@@ -1,3 +1,4 @@
 {
-    "name": "library"
+    "name": "library",
+    "entry": "/src/index.js"
 }
