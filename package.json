@@ -7,7 +7,7 @@
     "prepublish": "npm build",
     "build": "webpack --progress --colors",
     "build-min": "PROD_DEV=1 webpack --progress --colors",
-    "build-watch": "webpack --progress --colors --watch"
+    "build-watch": "webpack --progress --colors --watch",
     "unit": "mocha --compilers js:babel-core/register --colors ./test/*.spec.js",
     "unit-watch": "mocha --compilers js:babel-core/register --colors -w ./test/*.spec.js",
     "test": "npm run unit-watch"
