@@ -4,7 +4,7 @@ var PROD = JSON.parse(process.env.PROD_DEV || "0");
 var path = require('path');
 
 // get library details from JSON config
-var libraryDesc = require('./library.json');
+var libraryDesc = require('./package.json').library;
 var libraryName = libraryDesc.name;
 var libraryEntryPoint = libraryDesc.entry;
 
