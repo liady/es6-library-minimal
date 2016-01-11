@@ -4,11 +4,12 @@
   "description": "ES6 NPM Library Starter",
   "main": "./lib/index.js",
   "scripts": {
+    "prepublish": "npm build",
     "build": "webpack",
     "dev": "webpack --progress --colors --watch",
-    "prepublish": "npm build",
-    "unit": "mocha --compilers js:babel-core/register --colors -w ./test/*.spec.js",
-    "test": "npm run unit"
+    "unit": "mocha --compilers js:babel-core/register --colors ./test/*.spec.js",
+    "unit-watch": "mocha --compilers js:babel-core/register --colors -w ./test/*.spec.js",
+    "test": "npm run unit-watch"
   },
   "repository": {
     "type": "git",
