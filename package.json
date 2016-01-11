@@ -2,12 +2,13 @@
   "name": "es6-library-starter",
   "version": "1.0.0",
   "description": "ES6 NPM Library Starter",
-  "main": "./index.js",
+  "main": "./lib/index.js",
   "scripts": {
     "build": "webpack",
     "dev": "webpack --progress --colors --watch",
     "prepublish": "npm build",
-    "test": "mocha --compilers js:babel-core/register --colors -w ./test/*.spec.js"
+    "unit": "mocha --compilers js:babel-core/register --colors -w ./test/*.spec.js",
+    "test": "npm run unit"
   },
   "repository": {
     "type": "git",
