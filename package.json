@@ -1,6 +1,6 @@
 {
   "name": "es6-library-minimal",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "ES6 Universal Library Starter",
   "main": "./lib/index.js",
   "scripts": {
