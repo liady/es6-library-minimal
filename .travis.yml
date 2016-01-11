@@ -7,4 +7,6 @@ node_js:
   - "iojs"
 env:
   - TEST_SUITE=unit
-script: "npm run-script $TEST_SUITE"
+script: 
+  - npm run build
+  - npm run $TEST_SUITE
