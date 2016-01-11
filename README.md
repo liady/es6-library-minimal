@@ -1,2 +1,2 @@
-# es6-npm-library
-A boilerplate for an ES6 library
+# es6-library-starter
+A boilerplate for an ES6 NPM library
