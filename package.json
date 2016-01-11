@@ -1,6 +1,6 @@
 {
   "name": "es6-library-starter",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "ES6 NPM Library Starter",
   "main": "./lib/index.js",
   "scripts": {
@@ -26,7 +26,10 @@
     "umd",
     "webpack"
   ],
-  "author": "Liad Yosef",
+  "author": {
+    "name": "Liad Yosef",
+    "url": "https://github.com/liady"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/liady/es6-library-starter/issues"
