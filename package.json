@@ -1,7 +1,7 @@
 {
   "name": "es6-library-minimal",
   "version": "0.0.1",
-  "description": "ES6 NPM Library Starter",
+  "description": "ES6 Universal Library Starter",
   "main": "./lib/index.js",
   "scripts": {
     "prepublish": "npm build",
@@ -24,7 +24,8 @@
     "boilerplate",
     "babel",
     "umd",
-    "webpack"
+    "webpack",
+    "universal"
   ],
   "author": {
     "name": "Liad Yosef",
@@ -34,6 +35,11 @@
   "bugs": {
     "url": "https://github.com/liady/es6-library-minimal/issues"
   },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib"
+  ],
   "homepage": "https://github.com/liady/es6-library-minimal",
   "devDependencies": {
     "babel": "^6.3.26",
