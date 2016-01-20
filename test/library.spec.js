@@ -1,5 +1,5 @@
 import chai from 'chai';
-import Library from '../lib/index.js';
+import Library from '../index.js';
 
 chai.expect();
 
