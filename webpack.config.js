@@ -1,48 +1,52 @@
 var webpack = require('webpack');
-var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
-var PROD = JSON.parse(process.env.PROD_DEV || "0");
 var path = require('path');
+var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 
 // get library details from JSON config
 var libraryDesc = require('./package.json').library;
 var libraryName = libraryDesc.name;
 var libraryEntryPoint = libraryDesc.entry;
 
-// determine output file name
-var outputName = PROD ? libraryName + '.min.js' : libraryName + '.js';
+module.exports = function getConfig(BUILD_ENV){
 
-// generate webpack config
-var config = {
-  entry: __dirname + libraryEntryPoint,
-  devtool: 'source-map',
-  output: {
-    path: __dirname + '/lib',
-    filename: outputName,
-    library: libraryName,
-    libraryTarget: 'umd',
-    umdNamedDefine: true
-  },
-  module: {
-    preLoaders: [
-      {test: /\.js$/, exclude: /(node_modules|bower_components)/, loader: "eslint-loader"}
-    ],
-    loaders: [
-      {test: /\.js$/, exclude: /(node_modules|bower_components)/, loader: "babel-loader"},
+  var PROD = (BUILD_ENV || process.env.BUILD_ENV) === 'PROD';
+
+  // determine output file name
+  var outputName = PROD ? libraryName + '.min.js' : libraryName + '.js';
+
+  // generate webpack config
+  return {
+    entry: __dirname + libraryEntryPoint,
+    devtool: 'source-map',
+    output: {
+      path: __dirname + '/dist',
+      filename: outputName,
+      library: libraryName,
+      libraryTarget: 'umd',
+      umdNamedDefine: true
+    },
+    module: {
+      preLoaders: [
+        {test: /\.js$/, exclude: /(node_modules|bower_components)/, loader: "eslint-loader"}
+      ],
+      loaders: [
+        {test: /\.js$/, exclude: /(node_modules|bower_components)/, loader: "babel-loader"},
+      ]
+    },
+    eslint: {
+        configFile: './.eslintrc'
+    },
+    resolve: {
+      root: path.resolve('./src'),
+      extensions: ['', '.js']
+    },
+    plugins: PROD ? [
+      new webpack.DefinePlugin({'process.env': {'NODE_ENV': '"production"'}}),
+      new UglifyJsPlugin({ minimize: true })
+      // Prod plugins here
+    ] : [
+      new webpack.DefinePlugin({'process.env': {'NODE_ENV': '"development"'}})
+      // Dev plugins here
     ]
-  },
-  eslint: {
-      configFile: './.eslintrc'
-  },
-  resolve: {
-    root: path.resolve('./src'),
-    extensions: ['', '.js']
-  },
-  plugins: PROD ? [
-    new UglifyJsPlugin({ minimize: true })
-    // Prod plugins here
-  ] : [
-    // Dev plugins here
-  ]
-};
-
-module.exports = config
+  };
+}

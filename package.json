@@ -2,12 +2,12 @@
   "name": "es6-library-minimal",
   "version": "0.0.3",
   "description": "ES6 Universal Library Starter",
-  "main": "./lib/index.js",
+  "main": "./index.js",
   "scripts": {
     "prepublish": "npm run build",
-    "build": "webpack --progress --colors",
-    "build-min": "PROD_DEV=1 webpack --progress --colors",
-    "build-watch": "webpack --progress --colors --watch",
+    "build": "gulp build",
+    "build-web": "gulp build-web",
+    "build-web-dev": "gulp build-web-dev",
     "unit": "mocha --compilers js:babel-core/register --colors ./test/*.spec.js",
     "unit-watch": "mocha --compilers js:babel-core/register --colors -w ./test/*.spec.js",
     "test": "npm run unit-watch"
@@ -38,7 +38,9 @@
   "files": [
     "LICENSE",
     "README.md",
-    "lib"
+    "index.js",
+    "lib",
+    "dist"
   ],
   "homepage": "https://github.com/liady/es6-library-minimal",
   "devDependencies": {
@@ -51,6 +53,13 @@
     "chai": "^3.4.1",
     "eslint": "^1.10.3",
     "eslint-loader": "^1.2.0",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^6.1.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-env": "^0.2.0",
+    "gulp-load-plugins": "^1.2.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-util": "^3.0.6",
     "mocha": "^2.3.4",
     "webpack": "^1.12.11"
   },
