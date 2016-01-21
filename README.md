@@ -16,19 +16,19 @@ npm install
 npm run build
 ```
 This will:
-1. Convert all files in `src` folder from ES6 to ES5
-2. Minify them (and create source-maps)
-3. Output them to then `lib` folder
+ 1. Convert all files in `src` folder from ES6 to ES5
+ 2. Minify them (and create source-maps)
+ 3. Output them to then `lib` folder
 
 ## Build for web
 ```sh
 npm run build-web
 ```
 This will:
-1. Run Webpack starting from the entry point file (`src/index.js`, can be configured).
-2. Convert all files from ES6 to ES5
-3. Minify them, **including all of their module dependencies** as a UMD module (so the file will be self-contained)
-4. Output the file to the `dist` folder
+ 1. Run Webpack starting from the entry point file (`src/index.js`, can be configured).
+ 2. Convert all files from ES6 to ES5
+ 3. Minify them, **including all of their module dependencies** as a UMD module (so the file will be self-contained)
+ 4. Output the file to the `dist` folder
 
 ## Test
 ```sh
@@ -37,8 +37,8 @@ npm run test
 
 ## Configuration
 In `package.json`, under the section `library`, you can configure:
-1. Library name (defaults to `library`)
-2. Webpack entry point (defaults to `src/index.js`)
+ 1. Library name (defaults to `library`)
+ 2. Webpack entry point (defaults to `src/index.js`)
 
 ## License
 MIT
