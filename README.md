@@ -10,6 +10,7 @@ A boilerplate for a universal (Node, web, UMD) ES6 library.
 ```sh
 npm install
 ```
+After cloning this repository, make sure to change all the relevant entries in `package.json` so they match your library.
 
 ## Build for npm
 ```sh
@@ -36,8 +37,9 @@ npm run test
 ```
 
 ## Configuration
-In `package.json`, under the section `library`, you can configure:
- 1. Library name (defaults to `library`)
+In `package.json`, change all the relevant entries so they match your library.
+Under the section `library`, you can configure:
+ 1. Library name (defaults to `"library"`)
  2. Webpack entry point (defaults to `src/index.js`)
 
 ## License
