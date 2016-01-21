@@ -18,7 +18,7 @@ npm run build
 This will:
  1. Convert all files in `src` folder from ES6 to ES5
  2. Minify them (and create source-maps)
- 3. Output them to then `lib` folder
+ 3. Output them to the `lib` folder
 
 ## Build for web
 ```sh
