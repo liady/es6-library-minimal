@@ -6,12 +6,12 @@ ES6 library starter
 
 A boilerplate for a universal (Node, web, UMD) ES6 library.
 
-# Installation
+## Installation
 ```sh
 npm install
 ```
 
-# Build for npm
+## Build for npm
 ```sh
 npm run build
 ```
@@ -20,7 +20,7 @@ This will:
 2. Minify them (and create source-maps)
 3. Output them to then `lib` folder
 
-# Build for web
+## Build for web
 ```sh
 npm run build-web
 ```
@@ -30,15 +30,15 @@ This will:
 3. Minify them, **including all of their module dependencies** as a UMD module (so the file will be self-contained)
 4. Output the file to the `dist` folder
 
-# Test
+## Test
 ```sh
 npm run test
 ```
 
-# Configuration
+## Configuration
 In `package.json`, under the section `library`, you can configure:
 1. Library name (defaults to `library`)
 2. Webpack entry point (defaults to `src/index.js`)
 
-# License
+## License
 MIT
