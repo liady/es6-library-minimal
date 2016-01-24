@@ -12,16 +12,16 @@ npm install
 ```
 After cloning this repository, make sure to change all the relevant entries in `package.json` so they match your library.
 
-## Build for npm
+## Build your library for npm
 ```sh
 npm run build
 ```
 This will:
  1. Convert all files in `src` folder from ES6 to ES5
- 2. Minify them (and create source-maps)
- 3. Output them to the `lib` folder
+ 2. Minify them to a single file (and create source-maps)
+ 3. Output it to the `lib` folder
 
-## Build for web
+## Build your library for web
 ```sh
 npm run build-web
 ```
