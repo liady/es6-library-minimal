@@ -18,7 +18,8 @@ const sources = './src/**/*.js';
 
 gulp.task('default', ['build', 'build-web']);
 
-gulp.task('build', () => 
+// Build as a Node library
+gulp.task('build', ['lint'], () => 
   gulp.src([
     sources
   ])
@@ -30,12 +31,23 @@ gulp.task('build', () =>
     .pipe(gulp.dest(libFolder))
 );
 
+// Build for web
 gulp.task('build-web', ['webpack:build']);
 
+// Build for web + watch
 gulp.task('build-web-dev', ['webpack:build-dev'], () => {
   gulp.watch([sources], ["webpack:build-dev"])
 });
 
+// Lint javascript
+gulp.task('lint', () =>
+  gulp.src(sources)
+    .pipe($.eslint())
+    .pipe($.eslint.format())
+    .pipe($.eslint.failOnError())
+);
+
+// Webpack helper
 gulp.task('webpack:build', (cb) => {
   setEnv('PROD');
   // run webpack
@@ -47,6 +59,7 @@ gulp.task('webpack:build', (cb) => {
   });
 });
 
+// Webpack watch helper
 // create a single instance of the compiler to allow caching
 var devCompiler = null;
 gulp.task('webpack:build-dev', (cb) => {
@@ -63,6 +76,7 @@ gulp.task('webpack:build-dev', (cb) => {
   });
 });
 
+// Sets environment variable
 function setEnv(buildEnv){
   $.env({
     vars: {
