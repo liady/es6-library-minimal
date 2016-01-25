@@ -3,7 +3,7 @@ ES6 library starter
 
 [![Version](http://img.shields.io/npm/v/es6-library-minimal.svg)](https://www.npmjs.org/package/es6-library-minimal)
 [![Build Status](https://travis-ci.org/liady/es6-library-minimal.svg?branch=master)](https://travis-ci.org/liady/es6-library-minimal)
-[![Code style: airbnb](https://img.shields.io/badge/code%20style-airbnb-blue.svg?style=flat-square)](https://github.com/airbnb/javascript)
+[![Code style: airbnb](https://img.shields.io/badge/code%20style-airbnb-blue.svg?style=flat)](https://github.com/airbnb/javascript)
 
 A boilerplate for a universal (Node, web, UMD) ES6 library.
 
