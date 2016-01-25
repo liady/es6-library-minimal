@@ -20,14 +20,9 @@ gulp.task('default', ['build', 'build-web']);
 
 // Build as a Node library
 gulp.task('build', ['lint'], () => 
-  gulp.src([
-    sources
-  ])
-    .pipe($.sourcemaps.init())
+  gulp.src([sources])
     .pipe($.babel())
-    .pipe($.concat(libFile))
     // Output files
-    .pipe($.sourcemaps.write('.'))
     .pipe(gulp.dest(libFolder))
 );
 

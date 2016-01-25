@@ -5,7 +5,7 @@ var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 // get library details from JSON config
 var libraryDesc = require('./package.json').library;
 var libraryName = libraryDesc.name;
-var libraryEntryPoint = libraryDesc.entry;
+var libraryEntryPoint = path.join('src', libraryDesc.entry);
 
 module.exports = function getConfig(BUILD_ENV){
 
@@ -16,10 +16,9 @@ module.exports = function getConfig(BUILD_ENV){
 
   // generate webpack config
   return {
-    entry: __dirname + libraryEntryPoint,
-    devtool: 'source-map',
+    entry: path.join(__dirname, libraryEntryPoint),
     output: {
-      path: __dirname + '/dist',
+      path: path.join(__dirname, 'dist'),
       filename: outputName,
       library: libraryName,
       libraryTarget: 'umd',
@@ -40,6 +39,8 @@ module.exports = function getConfig(BUILD_ENV){
       root: path.resolve('./src'),
       extensions: ['', '.js']
     },
+    devtool: PROD ? 'source-map' : 'eval',
+    debug: !PROD,
     plugins: PROD ? [
       new webpack.DefinePlugin({'process.env': {'NODE_ENV': '"production"'}}),
       new UglifyJsPlugin({ minimize: true })

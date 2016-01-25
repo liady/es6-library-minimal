@@ -13,7 +13,7 @@ A boilerplate for a universal (Node, web, UMD) ES6 library.
  3. Run `npm install` to install dev dependencies.
  4. Write your ES6 code in `src` folder.
  5. Write your ES6 tests in `test` folder.
- 6. Run `npm build` to build for npm. This will output the result ES5 files to `lib` folder.
+ 6. Run `npm build` to build for node. This will output the result ES5 files to `lib` folder.
  7. Run `npm build-web` to build and pack the files for the web. This will output the result to `dist` folder.
  8. Run `npm publish` to pulish to the world.
 
