@@ -4,10 +4,14 @@
   "description": "ES6 Universal Library Starter",
   "main": "./index.js",
   "scripts": {
-    "prepublish": "npm run build",
+    "prepublish": "npm run build-all",
+    "preversion": "npm run build-all && npm run unit",
+    "version": "git add .",
+    "postversion": "git push && git push --tags",
     "build": "gulp build",
     "build-web": "gulp build-web",
     "build-web-dev": "gulp build-web-dev",
+    "build-all": "gulp",
     "unit": "mocha --compilers js:babel-core/register --colors ./test/*.spec.js",
     "unit-watch": "mocha --compilers js:babel-core/register --colors -w ./test/*.spec.js",
     "test": "npm run unit-watch"
