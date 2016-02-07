@@ -32,7 +32,7 @@ npm run build
 This will:
  1. Run Webpack starting from the entry point file (`src/library.js`, can be configured)
  2. Convert all files in `src` folder from ES6 to ES5
- 3. Minify and bundle them using Webpack, **without their `node_modules`** dependencies
+ 3. Minify and bundle them using Webpack, **without their** `node_modules` **dependencies**
  4. Output the result to the `lib` folder
 
 ### Build for web
