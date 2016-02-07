@@ -59,7 +59,7 @@ Under the section `library`, you can configure:
  2. Webpack entry point (defaults to `library.js`)
  3. Dist folder for Node (defaults to `lib`)
  4. Dist folder for Web (defaults to `dist`)
- 5. Choose whether to bundle for for Node (defaults to `true`)
+ 5. Choose whether to bundle for Node (defaults to `true`)
 
 ## License
 MIT
