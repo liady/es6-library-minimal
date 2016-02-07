@@ -8,18 +8,18 @@
 import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import webpack from 'webpack';
+import del from 'del';
 import pkg from './package.json';
 import webpackConfig from "./webpack.config.js";
 
 const $ = gulpLoadPlugins();
 const libFolder = 'lib';
-const libFile = pkg.library.name + '.js';
 const sources = './src/**/*.js';
 
 gulp.task('default', ['build', 'build-web']);
 
 // Build for node
-gulp.task('build', ['webpack:build-node']);
+gulp.task('build', pkg.library['bundle-node'] ? ['webpack:build-node'] : ['build-babel']);
 
 // Build for node + watch
 gulp.task('build-dev', ['webpack:build-node-dev'], () => {
@@ -33,6 +33,27 @@ gulp.task('build-web', ['webpack:build-web']);
 gulp.task('build-web-dev', ['webpack:build-web-dev'], () => {
   gulp.watch([sources], ['webpack:build-web-dev'])
 });
+
+// Run Babel only
+gulp.task('build-babel', ['clean', 'lint'], () => 
+  gulp.src([sources])
+    .pipe($.babel())
+    // Output files
+    .pipe(gulp.dest(libFolder))
+);
+
+// Lint javascript
+gulp.task('lint', () =>
+  gulp.src(sources)
+    .pipe($.eslint())
+    .pipe($.eslint.format())
+    .pipe($.eslint.failOnError())
+);
+
+// Clean folder
+gulp.task('clean', () =>
+  del([`${libFolder}/**/*`])
+);
 
 // Webpack helper
 gulp.task('webpack:build-web', done => {
