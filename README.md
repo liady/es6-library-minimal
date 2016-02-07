@@ -13,7 +13,7 @@ A boilerplate for a universal (Node, web, UMD) ES6 library.
  3. Run `npm install` to install dev dependencies.
  4. Write your ES6 code in `src` folder.
  5. Write your ES6 tests in `test` folder.
- 6. Run `npm build` to build for node. This will output the result ES5 files to `lib` folder.
+ 6. Run `npm build` to build for node. This will compile to ES5, minify, and output the result to `lib` folder.
  7. Run `npm build-web` to build and pack the files for the web. This will output the result to `dist` folder.
  8. Run `npm publish` to pulish to the world.
 
@@ -30,8 +30,10 @@ npm install
 npm run build
 ```
 This will:
- 1. Convert all files in `src` folder from ES6 to ES5
- 2. Output them to the `lib` folder
+ 1. Run Webpack starting from the entry point file (`src/library.js`, can be configured)
+ 2. Convert all files in `src` folder from ES6 to ES5
+ 3. Minify and bundle them using Webpack, **without their `node_modules`** dependencies
+ 4. Output the result to the `lib` folder
 
 ### Build for web
 ```sh
@@ -51,8 +53,10 @@ npm run test
 ### Configuration
 In `package.json`, change all the relevant entries so they match your library.<br/>
 Under the section `library`, you can configure:
- 1. Library name (defaults to `"library"`)
- 2. Webpack entry point (defaults to `src/library.js`)
+ 1. Library name (defaults to `"Library"`)
+ 2. Webpack entry point (defaults to `library.js`)
+ 3. Dist folder for Node (defaults to `lib`)
+ 4. Dist folder for Web (defaults to `dist`)
 
 ## License
 MIT

@@ -18,58 +18,74 @@ const sources = './src/**/*.js';
 
 gulp.task('default', ['build', 'build-web']);
 
-// Build as a Node library
-gulp.task('build', ['lint'], () => 
-  gulp.src([sources])
-    .pipe($.babel())
-    // Output files
-    .pipe(gulp.dest(libFolder))
-);
+// Build for node
+gulp.task('build', ['webpack:build-node']);
 
-// Build for web
-gulp.task('build-web', ['webpack:build']);
-
-// Build for web + watch
-gulp.task('build-web-dev', ['webpack:build-dev'], () => {
-  gulp.watch([sources], ["webpack:build-dev"])
+// Build for node + watch
+gulp.task('build-dev', ['webpack:build-node-dev'], () => {
+  gulp.watch([sources], ['webpack:build-node-dev'])
 });
 
-// Lint javascript
-gulp.task('lint', () =>
-  gulp.src(sources)
-    .pipe($.eslint())
-    .pipe($.eslint.format())
-    .pipe($.eslint.failOnError())
-);
+// Build for web
+gulp.task('build-web', ['webpack:build-web']);
+
+// Build for web + watch
+gulp.task('build-web-dev', ['webpack:build-web-dev'], () => {
+  gulp.watch([sources], ['webpack:build-web-dev'])
+});
 
 // Webpack helper
-gulp.task('webpack:build', (cb) => {
-  setEnv('PROD');
+gulp.task('webpack:build-web', done => {
+  var env = {'BUILD_ENV':'PROD', 'TARGET_ENV': 'WEB'};
+  var taskName = 'webpack:build-web';
   // run webpack
-  webpack(webpackConfig('PROD'), (err, stats) => {
-    if(err)
-      throw new gutil.PluginError("webpack:build", err);
-    $.util.log("[webpack:build]", stats.toString({colors: true}));
-    cb();
-  });
+  webpack(webpackConfig(env), onBuild(done, taskName));
 });
 
 // Webpack watch helper
 // create a single instance of the compiler to allow caching
-var devCompiler = null;
-gulp.task('webpack:build-dev', (cb) => {
-  setEnv('DEV');
-  if(!devCompiler){
-      devCompiler = webpack(webpackConfig('DEV'));
+var webDevCompiler = null;
+gulp.task('webpack:build-web-dev', done => {
+  var env = {'BUILD_ENV':'DEV', 'TARGET_ENV': 'WEB'};
+  var taskName = 'webpack:build-web-dev';
+  // build dev compiler
+  if(!webDevCompiler){
+      webDevCompiler = webpack(webpackConfig(env));
   }
   // run webpack
-  devCompiler.run(function(err, stats) {
-    if(err)
-      throw new gutil.PluginError("webpack:build-dev", err);
-    $.util.log("[webpack:build-dev]", stats.toString({colors: true}));
-    cb();
-  });
+  webDevCompiler.run(onBuild(done, taskName));
 });
+
+// Webpack helper
+gulp.task('webpack:build-node', done => {
+  var env = {'BUILD_ENV':'PROD', 'TARGET_ENV': 'NODE'};
+  var taskName = 'webpack:build-node';
+  // run webpack
+  webpack(webpackConfig(env), onBuild(done, taskName));
+});
+
+// Webpack watch helper
+// create a single instance of the compiler to allow caching
+var nodeDevCompiler = null;
+gulp.task('webpack:build-node-dev', done => {
+  var env = {'BUILD_ENV':'DEV', 'TARGET_ENV': 'NODE'};
+  var taskName = 'webpack:build-node-dev';
+  // build dev compiler
+  if(!nodeDevCompiler){
+      nodeDevCompiler = webpack(webpackConfig(env));
+  }
+  // run webpack
+  nodeDevCompiler.run(onBuild(done, taskName));
+});
+
+function onBuild(done, taskName){
+  return (err, stats) => {
+    if(err)
+      throw new gutil.PluginError(taskName, err);
+    $.util.log(`${taskName}`, stats.toString({colors: true}));
+    done && done();
+  }
+}
 
 // Sets environment variable
 function setEnv(buildEnv){
