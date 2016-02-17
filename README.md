@@ -7,8 +7,6 @@ ES6 library starter
 
 > A boilerplate for a universal (Node, web, UMD) ES6 library.
 
-(If you need even lighter version - find it [here](https://github.com/liady/es6-lib-starter-light)).
-
 ## Quick usage
  1. Clone this repo.
  2. Change all relevant entries in `package.json` and `README.md`, so they match your new shiny library.
@@ -18,6 +16,8 @@ ES6 library starter
  6. Run `npm run build` to build for node. This will compile to ES5, minify, and output the result to `lib` folder.
  7. Run `npm run build-web` to build and pack the files for the web. This will output the result to `dist` folder.
  8. Run `npm publish` to pulish to the world.
+ 
+(If you need even lighter version - find it [here](https://github.com/liady/es6-lib-starter-light)).
 
 ## Detailed overview
 
