@@ -17,7 +17,7 @@ ES6 library starter
  7. Run `npm run build-web` to build and pack the files for the web. This will output the result to `dist` folder.
  8. Run `npm publish` to pulish to the world.
  
-(If you need an even lighter version - find it [here](https://github.com/liady/es6-lib-starter-light)).
+(Or, if you don't need Webpack bundling, you can use the [even lighter ES6 starter](https://github.com/liady/es6-lib-starter-light)).
 
 ## Detailed overview
 
